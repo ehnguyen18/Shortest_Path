@@ -57,6 +57,7 @@ void graph::uniformCostSearch(string start, string end){
     unordered_map<string, int> distance;
     unordered_map<string, string> parent;
     priority_queue<pair<string, int>, vector<pair<string, int>>, greater<pair<string, int>>> frontier;
+    stack<string> child;        //To reverse the path
     
     frontier.push(make_pair(start, 0));
     explored[start]=true;
@@ -67,12 +68,16 @@ void graph::uniformCostSearch(string start, string end){
         frontier.pop();
         if(u==end){ //Found goal
             cout<<"Shortest path from "<<start<<" to "<<end<<" is: "<<distance[end]<<endl;
-            cout<<"Path:";
+            cout<<"Path: ";
             while(parent[u]!=""){
-                cout<<u<<" <- ";
                 u=parent[u];
+                child.push(u);
             }
-            cout<<endl;
+            while(!child.empty()){
+                cout<<child.top()<<" -> ";
+                child.pop();
+            }
+            cout<<end<<endl;
             return;
         }
 

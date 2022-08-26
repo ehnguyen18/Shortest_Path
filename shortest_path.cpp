@@ -34,6 +34,8 @@ int main(){
         g.addEdge("Dobreta","Craiova",120);
         g.addEdge("Arad","Sibiu", 140);
 
+        g.printGraph();
+
         string start, end;
         cout<<"Enter start city: ";
         cin>>start;
