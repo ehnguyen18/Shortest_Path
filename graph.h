@@ -6,7 +6,7 @@
 * https://stackoverflow.com/questions/42780071/map-reprsentation-of-graph
 * https://youtu.be/drpdVQq5-mk (Graph Adjaceny List Representation | Using Hash-map | Coding Blocks)
 */
-#include <iostream>
+#include<iostream>
 #include<unordered_map>
 #include<map>
 #include<vector>
@@ -23,10 +23,12 @@ class graph{
     int E=0;
     
     public:
-        graph(int V);
+        graph(int V)
+        {
+            this->V=V;
+        };
         void addEdge(string, string, int);
         void printGraph();
-        void BFS(int s);
 };
 
 void graph::addEdge(string start, string end, int weight){
@@ -35,19 +37,19 @@ void graph::addEdge(string start, string end, int weight){
     adjList[start]=path;
     path[start] = weight;
     adjList[end]=path;
-    E+=2;
+    E++;
 }
 
 void graph::printGraph(){
+    cout<<"Number of Vertex: "<<V<<endl;
+    cout<<"Number of Edges: "<<E<<endl;
     for(auto i=adjList.begin();i!=adjList.end();i++){
         cout<<i->first<<" -> ";
         for(auto j=i->second.begin();j!=i->second.end();j++){
-            cout<<"("<<i->first<<","<<j->first<<","<<j->second<<") ";
+            cout<<"("<<j->first<<","<<j->second<<") ";
         }
         cout<<endl;
     }
 }
 
-void graph::BFS(int s){
-}
 #endif /* GRAPH_H_ */
