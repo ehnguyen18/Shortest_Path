@@ -1,10 +1,6 @@
 #include <iostream>
-#include<unordered_map>
-#include<map>
-#include<vector>
 #include<string>
 #include<algorithm>
-#include<queue>
 
 using namespace std;
 
@@ -13,6 +9,7 @@ using namespace std;
 int main(){
 
         graph g(20);
+
         g.addEdge("Neamt", "Iasi", 87);
         g.addEdge("Iasi","Vaslui", 92);
         g.addEdge("Vaslui","Urziceni", 142);
@@ -37,6 +34,16 @@ int main(){
         g.addEdge("Dobreta","Craiova",120);
         g.addEdge("Arad","Sibiu", 140);
 
-        g.printGraph();
+        string start, end;
+        cout<<"Enter start city: ";
+        cin>>start;
+        start[0]=toupper(start[0]);
+        
+        cout<<"Enter end city: ";
+        cin>>end;
+        end[0]=toupper(end[0]);
+
+        g.uniformCostSearch(start, end);
+        system("pause");
         return 0;
 }
