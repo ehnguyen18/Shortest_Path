@@ -42,7 +42,7 @@ void graph::addEdge(string start, string end, int weight){
 
 void graph::printGraph(){
     cout<<"Number of Vertex: "<<V<<endl;
-    cout<<"Number of Edges: "<<E<<endl;
+    cout<<"Number of Edges: "<<E<<endl<<endl;
     for(auto i=adjList.begin();i!=adjList.end();i++){
         cout<<i->first<<" -> ";
         for(auto j=i->second.begin();j!=i->second.end();j++){
@@ -50,6 +50,7 @@ void graph::printGraph(){
         }
         cout<<endl;
     }
+    cout<<endl;
 }
 
 void graph::uniformCostSearch(string start, string end){
