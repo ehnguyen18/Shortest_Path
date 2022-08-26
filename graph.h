@@ -72,7 +72,7 @@ void graph::uniformCostSearch(string start, string end){
             cout<<"Path: ";
             while(parent[u]!=""){
                 u=parent[u];
-                child.push(u);
+                child.push(u);  //reverse the path
             }
             while(!child.empty()){
                 cout<<child.top()<<" -> ";
@@ -89,8 +89,8 @@ void graph::uniformCostSearch(string start, string end){
                 parent[i->first]=u;
                 frontier.push(make_pair(i->first, distance[i->first]));
             }
-            else if(distance[i->first]>distance[u]+i->second){
-                distance[i->first]=distance[u]+i->second;
+            else if(distance[i->first]>distance[u]+i->second){ //If the distance is greater than the current distance, 
+                distance[i->first]=distance[u]+i->second;     //update the distance and parent
                 parent[i->first]=u;
                 frontier.push(make_pair(i->first, distance[i->first]));
             }
