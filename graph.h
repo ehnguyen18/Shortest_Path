@@ -54,10 +54,10 @@ void graph::printGraph(){
 }
 
 void graph::uniformCostSearch(string start, string end){
-    unordered_map<string, bool> explored;
-    unordered_map<string, int> distance;
-    unordered_map<string, string> parent;
-    priority_queue<pair<string, int>, vector<pair<string, int>>, greater<pair<string, int>>> frontier;
+    unordered_map<string, bool> explored;   //keep track of explored nodes
+    unordered_map<string, int> distance;    //distance from start to nodes
+    unordered_map<string, string> parent;   //parent of nodes
+    priority_queue<pair<string, int>, vector<pair<string, int>>, less<pair<string, int>>> frontier;  //keep track of nodes to be explored
     stack<string> child;        //To reverse the path
     
     frontier.push(make_pair(start, 0));
@@ -65,9 +65,10 @@ void graph::uniformCostSearch(string start, string end){
     distance[start]=0;
     parent[start]="";
     while(!frontier.empty()){
-        string u=frontier.top().first;
+        string u=frontier.top().first;  //get the node with minimum distance
         frontier.pop();
-        if(u==end){ //Found goal
+        
+        if(u==end){                     //Found goal (Base case)
             cout<<"Shortest path from "<<start<<" to "<<end<<" is: "<<distance[end]<<endl;
             cout<<"Path: ";
             while(parent[u]!=""){
@@ -89,8 +90,8 @@ void graph::uniformCostSearch(string start, string end){
                 parent[i->first]=u;
                 frontier.push(make_pair(i->first, distance[i->first]));
             }
-            else if(distance[i->first]>distance[u]+i->second){ //If the distance is greater than the current distance, 
-                distance[i->first]=distance[u]+i->second;     //update the distance and parent
+            else if(distance[u]+i->second<distance[i->first]){
+                distance[i->first]=distance[u]+i->second;
                 parent[i->first]=u;
                 frontier.push(make_pair(i->first, distance[i->first]));
             }
