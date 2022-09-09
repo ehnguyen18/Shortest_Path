@@ -90,7 +90,7 @@ void graph::uniformCostSearch(string start, string end){
                 parent[i->first]=u;
                 frontier.push(make_pair(i->first, distance[i->first]));
             }
-            else if(distance[u]+i->second<distance[i->first]){
+            else if(distance[u]+i->second < distance[i->first]){
                 distance[i->first]=distance[u]+i->second;
                 parent[i->first]=u;
                 frontier.push(make_pair(i->first, distance[i->first]));
